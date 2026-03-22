@@ -64,13 +64,10 @@ git clone https://github.com/SIJULY/codex-console.git && cd codex-console && pip
 
 * 一. 准备纯净的 Python 3.10 虚拟环境 (以 Miniconda 为例)
 ```bash
-# 下载并安装 Miniconda (根据你的 CPU 架构替换链接，此处为 ARM64 示例)
 mkdir -p ~/miniconda3
-wget [https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh) -O ~/miniconda3/miniconda.sh
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh -O ~/miniconda3/miniconda.sh
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 source ~/miniconda3/bin/activate
-
-# 创建并激活名为 codex 的专属环境
 conda create -n codex python=3.10 -y
 conda activate codex
 ```
