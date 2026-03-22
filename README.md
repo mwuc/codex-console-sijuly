@@ -81,7 +81,7 @@ conda activate codex
 git clone https://github.com/SIJULY/codex-console.git /opt/codex-console
 cd /opt/codex-console
 pip install -r requirements.txt
-```bash
+```
 
 * 三. 注册系统级后台服务 (Systemd)
 
@@ -108,7 +108,7 @@ EOF
 systemctl daemon-reload
 systemctl enable codex
 systemctl start codex
-```bash
+```
 🎉 部署完成！浏览器访问 http://ip:8090，密码 admin888 即可使用。
 
 ## 免责声明
