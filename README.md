@@ -54,7 +54,7 @@
 对于 macOS 或带有较新 Python 环境的 Linux 桌面用户，直接在终端执行以下命令即可拉取并启动：
 
 ```bash
-git clone [https://github.com/SIJULY/codex-console.git](https://github.com/SIJULY/codex-console.git) && cd codex-console && pip install -r requirements.txt && python webui.py --port 8090 --access-password admin888
+git clone https://github.com/SIJULY/codex-console.git && cd codex-console && pip install -r requirements.txt && python webui.py --port 8090 --access-password admin888
 ```
 启动成功后，浏览器访问 http://127.0.0.1:8090，密码 admin888 即可使用。
 
@@ -64,14 +64,14 @@ git clone [https://github.com/SIJULY/codex-console.git](https://github.com/SIJUL
 一. 安装纯净的 Python 环境 (以 Miniconda 为例)
 ```bash
 mkdir -p ~/miniconda3
-wget [https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh) -O ~/miniconda3/miniconda.sh
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh -O ~/miniconda3/miniconda.sh
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 source ~/miniconda3/bin/activate
 ```
 二. 拉取代码并安装依赖
 ```bash
 # 推荐将项目放在 /opt 目录下统一管理
-git clone [https://github.com/SIJULY/codex-console.git](https://github.com/SIJULY/codex-console.git) /opt/codex-console
+git clone https://github.com/SIJULY/codex-console.git /opt/codex-console
 cd /opt/codex-console
 pip install -r requirements.txt
 ```
