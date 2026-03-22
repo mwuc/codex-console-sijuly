@@ -54,35 +54,28 @@
 对于 macOS 或带有较新 Python 环境的 Linux 桌面用户，直接在终端执行以下命令即可拉取并启动：
 
 ```bash
-git clone https://github.com/SIJULY/codex-console.git && cd codex-console && pip install -r requirements.txt && python webui.py --port 8090 --access-password admin888
+git clone [https://github.com/SIJULY/codex-console.git](https://github.com/SIJULY/codex-console.git) && cd codex-console && pip install -r requirements.txt && python webui.py --port 8090 --access-password admin888
 ```
-启动成功后，浏览器访问 http:///127.0.0.1:8090，密码 admin888 即可使用。
+启动成功后，浏览器访问 http://127.0.0.1:8090，密码 admin888 即可使用。
 
 ### 方案二：云服务器全自动后台部署 (⭐ 强烈推荐)
+如果你使用的是云服务器（如甲骨文 ARM 实例、Ubuntu 20.04 等），系统默认环境可能较老，且 SSH 断开会导致任务停止。请使用以下步骤进行纯净环境构建与 Systemd 守护进程部署：
 
-如果你使用的是云服务器（如甲骨文 ARM 实例、Ubuntu 20.04 等），系统默认环境可能较老，且 SSH 断开会导致任务停止。请使用以下步骤进行 纯净环境构建 + Systemd 守护进程部署
-
-* 一. 准备纯净的 Python 3.10 虚拟环境 (以 Miniconda 为例)
+一. 安装纯净的 Python 环境 (以 Miniconda 为例)
 ```bash
 mkdir -p ~/miniconda3
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh -O ~/miniconda3/miniconda.sh
+wget [https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh) -O ~/miniconda3/miniconda.sh
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 source ~/miniconda3/bin/activate
-conda create -n codex python=3.10 -y
-conda activate codex
 ```
-
-* 二. 拉取代码并安装依赖
+二. 拉取代码并安装依赖
 ```bash
 # 推荐将项目放在 /opt 目录下统一管理
-git clone https://github.com/SIJULY/codex-console.git /opt/codex-console
+git clone [https://github.com/SIJULY/codex-console.git](https://github.com/SIJULY/codex-console.git) /opt/codex-console
 cd /opt/codex-console
 pip install -r requirements.txt
 ```
-
-* 三. 注册系统级后台服务 (Systemd)
-
-执行以下命令，让控制台开机自启、崩溃自动重启，彻底脱离 SSH 窗口独立运行：
+三. 注册系统级后台服务 (Systemd)
 ```bash
 cat << 'EOF' > /etc/systemd/system/codex.service
 [Unit]
@@ -92,8 +85,8 @@ After=network.target
 [Service]
 User=root
 WorkingDirectory=/opt/codex-console
-# 请确保以下 Python 路径与你实际的虚拟环境路径一致
-ExecStart=/root/miniconda3/envs/codex/bin/python webui.py --port 8090 --access-password admin888
+# 直接调用 Miniconda 基础环境的 Python，确保依赖互通
+ExecStart=/root/miniconda3/bin/python webui.py --port 8090 --access-password admin888
 Restart=always
 RestartSec=5
 
@@ -106,8 +99,8 @@ systemctl daemon-reload
 systemctl enable codex
 systemctl start codex
 ```
-🎉 部署完成！浏览器访问 http://ip:8090，密码 admin888 即可使用。
+🎉 部署完成！ 浏览器访问 http://你的服务器IP:8090，密码 admin888 即可使用。（请确保云厂商防火墙已放行 8090 端口）
 
-## 免责声明
+### 免责声明
 本项目仅供学习、研究和技术交流使用，请遵守相关平台和服务条款，不要用于违规、滥用或非法用途。
 因使用本项目产生的任何风险和后果，由使用者自行承担。
