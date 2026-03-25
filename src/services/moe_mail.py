@@ -49,7 +49,7 @@ class MeoMailEmailService(BaseEmailService):
         self.config = {**default_config, **(config or {})}
 
         # 智能识别是否为你的私人定制 API
-        self.is_custom_private_api = "192.9.144.12" in self.config.get("base_url", "")
+        self.is_custom_private_api = bool(self.config.get("base_url", "").strip())
 
         http_config = RequestConfig(
             timeout=self.config["timeout"],

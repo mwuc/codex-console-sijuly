@@ -54,9 +54,9 @@
 对于 macOS 或带有较新 Python 环境的 Linux 桌面用户，直接在终端执行以下命令即可拉取并启动：
 
 ```bash
-git clone https://github.com/SIJULY/codex-console.git && cd codex-console && pip install -r requirements.txt && python webui.py --port 8090 --access-password admin888
+git clone https://github.com/mwuc/codex-console-sijuly.git && cd codex-console && pip install -r requirements.txt && python webui.py --port 18090 --access-password admin888
 ```
-启动成功后，浏览器访问 http://127.0.0.1:8090，密码 admin888 即可使用。
+启动成功后，浏览器访问 http://127.0.0.1:18090，密码 admin888 即可使用。
 
 ### 方案二：云服务器全自动后台部署 (⭐ 强烈推荐)
 如果你使用的是云服务器（如甲骨文 ARM 实例、Ubuntu 20.04 等），系统默认环境可能较老，且 SSH 断开会导致任务停止。请使用以下步骤进行纯净环境构建与 Systemd 守护进程部署：
@@ -71,7 +71,7 @@ source ~/miniconda3/bin/activate
 二. 拉取代码并安装依赖
 ```bash
 # 推荐将项目放在 /opt 目录下统一管理
-git clone https://github.com/SIJULY/codex-console.git /opt/codex-console
+git clone https://github.com/mwuc/codex-console-sijuly.git /opt/codex-console
 cd /opt/codex-console
 pip install -r requirements.txt
 ```
@@ -86,7 +86,7 @@ After=network.target
 User=root
 WorkingDirectory=/opt/codex-console
 # 直接调用 Miniconda 基础环境的 Python，确保依赖互通
-ExecStart=/root/miniconda3/bin/python webui.py --port 8090 --access-password admin888
+ExecStart=/root/miniconda3/envs/codex/bin/python webui.py --port 18090 --access-password admin888
 Restart=always
 RestartSec=5
 
