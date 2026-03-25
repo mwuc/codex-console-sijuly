@@ -692,8 +692,8 @@ async def start_registration(request: RegistrationTaskCreate, background_tasks: 
 
 @router.post("/batch", response_model=BatchRegistrationResponse)
 async def start_batch_registration(request: BatchRegistrationRequest, background_tasks: BackgroundTasks):
-    if request.count < 1 or request.count > 100:
-        raise HTTPException(status_code=400, detail="注册数量必须在 1-100 之间")
+    if request.count < 1 or request.count > 10000:
+        raise HTTPException(status_code=400, detail="注册数量必须在 1-10000 之间")
     try:
         EmailServiceType(request.email_service_type)
     except ValueError:
